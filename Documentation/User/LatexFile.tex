@@ -1,0 +1,203 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{natbib}
+\usepackage{url}
+\usepackage{tabto}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{parskip}
+\usepackage{fancyhdr}
+\usepackage{vmargin}
+\usepackage{hyperref}
+\setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
+
+
+							
+
+
+\makeatletter
+\let\thetitle\@title
+
+\let\thedate\@date
+\makeatother
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\theauthor}
+\lhead{\thetitle}
+\cfoot{\thepage}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+	\centering
+    \vspace*{0.5 cm}
+    \includegraphics[scale = 0.35]{iitb_logo.png}\\[1.0 cm]	% University Logo
+    {\LARGE INDIAN INSTITUTE OF TECHNOLOGY }\\[1.0 cm]
+    {\LARGE BOMBAY}\\[2.0 cm]
+    \textsc{\lARGE COMPUTER SCIENCE AND ENGINEERING}\\[0.2 cm]
+    \textsc{\lARGE SOFTWARE LAB}\\[0.2 cm]
+	\textsc{\Large CS 699}\\[0.5 cm]
+	\textsc{\large E-Auction@IITB}\\[0.2 cm]
+	\rule{\linewidth}{0.2 mm} \\[0.4 cm]
+	{ \huge \bfseries \thetitle}\\
+	
+	
+	\begin{minipage}{0.8\textwidth}
+		
+			%\begin{flushright} 
+			\emph{STUDENT ID :\tab STUDENT NAME :} \\
+			193050043\tab Debtanu Pal\\
+			193050038\tab Srijon Sarkar\\
+			193050037\tab Gourab Dipta Ghosh\\
+			
+		%\end{flushright}
+	\end{minipage}\\[2 cm]
+	\vfill
+\end{titlepage}
+
+\tableofcontents
+\pagebreak
+
+\section{INTRODUCTION}
+In this digital era, we rely on the internet for literally(read figuratively) everything. From watching movies to having our meal, internet is the way to go. So here we look at another application which when brought online makes our lives easier and efficient.\\
+Many times we wish to sell off goods that we don't need anymore. The way to go till now included popular websites like Facebook marketplace, Olx, eBay, etc. where one posts a product and the price he/she is looking for. Buyers see the product being sold and contacts the seller and they decide on a price to go ahead with the transaction. However, there is an opportunity missed. Sellers often fail to estimate the best price he can get and buyers often miss out on a product since someone else saw the post first and went ahead with the deal.\\
+The solution to the above problem is pretty simple yet effective- AUCTIONS. Here we present an online auction portal where sellers post a product, sets a base price and a time period for which the auction will be live and visible. Buyers will fight it out for the product, placing their bids, hoping to get the product at the best price possible.\\
+This E-Auction portal provides a lot of functionality, details of which we will see in the following pages.
+
+\section{MOTIVATION}
+Let's look at a scenario, need not be hypothetical. At IIT Bombay, Neel wants to buy a bicycle and he is fine if it is a second hand one. Mandip wants to sell his 1 year old bicycle. Good news!\\
+Mandip posts online with a picture of his bicycle. He wants Rs 3000 for the cycle. Neel sees the post. He contacts Mandip and Neel manages to bring down the price to Rs 2600. Mandip tells him that he is graduating this Sunday and on Monday he will be leaving the campus at night. So Mandip puts forward a condition. Neel will come to Mandip to take the cycle on Monday morning for Rs 2600. But if Mandip gets another buyer in the mean time, who wills to pay him more than Rs 2600, then he will go ahead with the trade and Neel will miss out.\\
+On Monday morning, Neel goes to Mandip only to find out that Mandip already sold the cycle to Soham who paid him Rs 2800. Now Neel gets upset and tells Mandip that he reconsidered the deal. Neel thought that the cycle was indeed in a good condition and he was willing to go up as high as Rs 3000 for it.\\
+This is a lose-lose situation for both of them. Neel didn't get the cycle as he never got a second chance. Mandip found out later about Neel's reconsideration. This is a drawback of the traditional buy and sell websites.\\
+\section{IMPORTANT DATABASES}
+Here we look at the databases used in the project.
+
+\subsection{User}
+This database stores all the user data when an user registers and also the updates. Stored attributes are:\\
+username\\
+	password\\
+	email\\
+	balance\\
+	firstname\\
+	lastname\\
+	cellphone\\
+	address\\
+	town\\
+	post\_code\\
+	country\\
+
+\subsection{Product}
+Whenever a new product is put up for auction, the details are stored as an instance of this database. Stored attributes are:\\
+category\\
+title\\
+	description
+	base\_price\\
+	time\_starting
+	image\\
+	date\_posted\\
+
+\subsection{Auction}
+This database stores the auction details of a specific product. Stored attributes are:\\
+product\_id\\
+	user\_id\\
+	base\_price\\
+	number\_of\_bids\\
+	time\_starting\\
+	time\_ending\\
+
+\subsection{Watchlist}
+This database stores the info of all the products an user is watching. Stored attributes are:\\
+user\_id\\
+	auction\_id\\
+
+\subsection{Bid}
+This database stores the highest bid made on a product and the user who placed the bid. Stored attributes are:\\
+user\_id\\
+	auction\_id\\
+	bid\_time\\
+	
+\subsection{Chat}
+This class stores the messages posted on a product by an user. Stored attributes are:\\
+auction\_id\\
+	user\_id\\
+	message\\
+	time\_sent\\
+
+
+\section{USER MANUAL}
+In this section we will talk about how to use the portal and what functionalities are available to an user.
+
+\subsection{Registration}
+When a new user comes to the portal, he/she has to register first in order to participate in the auction procedure. However, without registration, one can view what are the items put up for sale.\\
+The credentials one need to enter are:\\
+Username\\
+Email\\
+Password and confirmation\\
+Firstname\\
+Lastname\\
+Cellphone\\
+Address\\
+Town\\
+Postal Code\\
+Country\\
+
+\subsection{Login}
+After registration, everytime one wishes to participate in auction, he/she needs to login via the login page.
+One has to login using Username and Password.
+
+\subsection{Put Up Auction}
+A seller can use this page to put up a new product for auction. Seller has to fill in the following:
+Product Name\\
+Descriptiom\\
+Start Data\\
+Start Time\\
+Duration of the auction\\
+Base price for the product\\
+Image of the product\\
+Select category of the product\\
+
+\subsection{My Items}
+After putting up products for auction, sellers can view their products for sale in this page. Items appear on the basis of current products first.
+
+\subsection{Watchlist}
+This page is from a buyer's point of view. If a buyer chooses to follow a particular product and the bids on it, he/she can click on the "Watch" button which appears below a product. Users can also comment on his/her watchlist item without bidding on it.
+
+\subsection{Balance}
+This page allows buyers to add money to his/her account before participating in the bidding process. User can top-up either Rs 500, 2000 or 10000.
+
+\subsection{Categories}
+All the products that has been put up for auction can be viewed based on their categories. This functionality helps users to look specifically for items they need.
+
+\subsection{Home Button}
+This button's functionality goes by the name only. Takes user to the homepage from any other page.
+
+
+\section{PORTAL INSIGHT}
+Now we have a look at the details of our auction procedure.
+
+\subsection{Auction Timing}
+One can setup an auction from a given date and time. However, the time should be an hour mark like 3pm. The auction duration is set to be in multiple of days only. This ensures that all the potential buyers need not be online at the same time and can place a bid according to his/her suitable timing.
+
+\subsection{Categories}
+User can choose from many available categories. If user thinks none of them is applicable, then he/she can choose others as the category.
+
+\subsection{Auction Mechanism}
+This is the heart of the project. When a seller puts a product for sale, he/she chooses a base price. Now every time a buyer goes to bid for that product, he/she has to increment the bid by 5\% of the base price that was chosen by the seller.\\
+Next we come to the fact that this mechanism tackles false bids. When an user places a bid, promising that if won, he/she is willing to pay that amount for that product. A false bid is a bid where the user places the bid with malicious intention and will not purchase the product by actually paying for it, if he/she wins. In this system, every time an user tries to bid for a product, first that bid amount is deducted from his/her account. Thus, if the user's bid ends up being the highest, then he/she will win and will not get that money back. That amount will be transferred to the seller after the transaction takes place.\\
+
+\section{FUTURE SCOPE}
+This is a mini project that has been built to show how an E-auction can help both a buyer and a seller. There are a lot of improvements that can be achieved on this.\\
+The top up section can be made flexible. Instead of minimum Rs 500, users can manually input the amount and add it from a payment's gateway instead of choosing from a drop down list.\\
+The auction setup timing can be made more flexible. User can choose hours and minutes instead of the present case where one auction can only be started at an hour mark. One can also choose to fragment the auction duration into hours from the current days only scenario.\\
+There can be much more things which one can suggest that enhances this portal.
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{biblist}
+
+\end{document}
